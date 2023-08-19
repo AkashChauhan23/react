@@ -1,19 +1,70 @@
-// import Intro2 from "./Intro2";
+import React, { useState } from 'react'
+
 
 function Intro1() {
-    const shoot = () => {
-        alert("Great Shot!");
+
+    const [data, setTextData] = useState('');
+    // user input data updating automatically 
+    const textUpdating = (event) => {
+        setTextData(event.target.value)
+    }
+    // change text to upper case
+    const textToUpper = () => {
+        if (data.length > 0){
+            let textUpper = data.toUpperCase()
+            setTextData(textUpper)
+        }
+    }
+    // change text to lower case
+    const textToLower = () => {
+        if (data.length > 0){
+            let textLower = data.toLowerCase()
+            setTextData(textLower)
+        }
+    }
+    // copy the text to clip
+    const textToCopy = () => {
+        navigator.clipboard.writeText(data)
     }
 
     return (
-        <div className="blog-post-intro">
-            <h2>I've become a React developer!</h2>
-            <div>
-                <p>I've completed the React Basics course and I'm happy to announce that I'm now a Junior React Developer!</p>
-                <p className="link">Read more...</p>
-                <button onClick={shoot}> Click me... </button>
+        <>
+            <div className="container">
+                <div className="mb-3">
+                    <label htmlFor="exampleFormControlInput1" className="form-label">
+                        Email address
+                    </label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="name@example.com"
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleFormControlTextarea1" className="form-label">
+                        Write your comments below:
+                    </label>
+                    <textarea
+                        className="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows={8}
+                        placeholder="Enter something here..."
+                        // defaultValue={""}
+                        value={data}
+                        onChange={textUpdating}
+                    />
+                </div>
+                <button onClick={textToUpper} className="btn btn-outline-success mx-2"> ToUpper... </button>
+                <button onClick={textToLower} className="btn btn-warning mx-2"> ToLower... </button>
+                <button onClick={textToCopy} className="btn btn-outline-secondary mx-2"> Copy Text... </button>
             </div>
-        </div>
+            <div className="container">
+                <h4>Preview</h4>
+                <p>{data}</p>
+                <p>{data.length} characters and {data.split(' ').length} words</p>
+            </div>
+        </>
     );
 };
 
