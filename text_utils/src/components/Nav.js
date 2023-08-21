@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+// import { Link } from "react-router-dom";
 
 function Nav(props) {
     return (
@@ -27,8 +28,8 @@ function Nav(props) {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a href='/' className="nav-link" >
-                                Link
+                            <a href='/countries' className="nav-link" >
+                                Countries
                             </a>
                         </li>
                         <li className="nav-item">

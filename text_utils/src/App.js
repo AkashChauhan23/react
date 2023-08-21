@@ -6,18 +6,31 @@ import Footer from './components/Footer';
 import Countries from './components/Countries';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
+// import {
+//   BrowserRouter as Router, Switch,
+//   Route,
+//   Switch,
+//   Link
+// } from "react-router-dom";
+
+// import {
+//   createBrowserRouter as Switch,
+//   RouterProvider as Routes,
+//   Route,
+//   // Link,
+// } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
     setAlert({
-      msg : message,
-      type : type
+      msg: message,
+      type: type
     })
     setTimeout(() => {
       setAlert(null)
-  }, 2000);
+    }, 2000);
   }
   const toggleMode = () => {
     if (mode === 'light') {
@@ -29,12 +42,29 @@ function App() {
     }
   }
   return (
+    // <Router>
     <>
       <Nav title="Library" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
-      <Intro1 mode={mode} showAlert={showAlert}/>
-      <Countries />
+
+      {/* <Router> */}
+        {/* <Router path="/"> */}
+
+          <Intro1 mode={mode} showAlert={showAlert} />
+        
+        {/* </Router> */}
+        
+        {/* <Router path="/" element={<Countries />} /> */}
+
+        {/* <Router path="/countries"> */}
+        
+          <Countries />
+        
+        {/* </Router> */}
+      {/* </Router> */}
+
       <Footer />
+    {/* </Router> */}
     </>
   );
 }
