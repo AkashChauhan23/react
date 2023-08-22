@@ -6,19 +6,7 @@ import Footer from './components/Footer';
 import Countries from './components/Countries';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
-// import {
-//   BrowserRouter as Router, Switch,
-//   Route,
-//   Switch,
-//   Link
-// } from "react-router-dom";
-
-// import {
-//   createBrowserRouter as Switch,
-//   RouterProvider as Routes,
-//   Route,
-//   // Link,
-// } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -42,29 +30,24 @@ function App() {
     }
   }
   return (
-    // <Router>
     <>
-      <Nav title="Library" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
+      {/* <Nav title="Library" mode={mode} toggleMode={toggleMode} /> */}
+      {/* <Intro1 mode={mode} showAlert={showAlert} /> */}
+      {/* <Countries /> */}
 
-      {/* <Router> */}
-        {/* <Router path="/"> */}
-
-          <Intro1 mode={mode} showAlert={showAlert} />
-        
-        {/* </Router> */}
-        
-        {/* <Router path="/" element={<Countries />} /> */}
-
-        {/* <Router path="/countries"> */}
-        
-          <Countries />
-        
-        {/* </Router> */}
-      {/* </Router> */}
-
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Nav title="Library" mode={mode} toggleMode={toggleMode} />} >
+            {/* <Route path="/" element={<Alert alert={alert} />} /> */}
+            <Route path="intro1" element={<Intro1 mode={mode} showAlert={showAlert} />} />
+            <Route path="countries" element={<Countries />} />
+            {/* <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NoPage />} /> */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
       <Footer />
-    {/* </Router> */}
     </>
   );
 }
